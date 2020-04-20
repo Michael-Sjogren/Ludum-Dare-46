@@ -29,6 +29,7 @@ LevelManager="*res://Levels/LevelManager.gd"
 window/size/width=384
 window/size/height=216
 window/size/resizable=false
+window/size/fullscreen=true
 window/size/always_on_top=true
 window/size/test_width=1024
 window/size/test_height=576

@@ -50,6 +50,9 @@ extents = Vector2( 6, 7 )
 collision_layer = 7
 collision_mask = 7
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 MAX_MOVE_SPEED_MULTIPLIER = 4
 FRICTION = 0.8
 
@@ -79,6 +82,7 @@ process_material = SubResource( 5 )
 shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 z_as_relative = false
 current = true
 drag_margin_h_enabled = true
@@ -97,6 +101,9 @@ texture = ExtResource( 3 )
 texture_scale = 2.0
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 0.929412 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="FuelTimer" type="Timer" parent="."]
 wait_time = 5.0
