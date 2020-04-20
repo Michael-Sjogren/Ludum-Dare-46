@@ -11,7 +11,7 @@
 [node name="World" type="Node2D"]
 
 [node name="BG" type="Sprite" parent="."]
-position = Vector2( 199.919, -88.1614 )
+position = Vector2( 199.919, -87.8694 )
 scale = Vector2( 12.5625, 8.01875 )
 texture = ExtResource( 2 )
 
@@ -24,12 +24,13 @@ tile_data = PoolIntArray( -1572905, 47, 65536, -1572904, 47, 65537, -1572903, 47
 [node name="Tutuorial Labels" type="Node" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Tutuorial Labels"]
-margin_left = -269.0
-margin_top = -0.540359
-margin_right = -103.0
-margin_bottom = 49.4596
+margin_left = -264.328
+margin_top = -12.6796
+margin_right = -72.3282
+margin_bottom = 37.3204
 custom_fonts/normal_font = ExtResource( 3 )
-text = "Use the [ A ] and [ D ] key to Move Left And Right."
+text = "Use the [ A ] and [ D ] key to Move Left And Right.
+You can also use Directional Arrow Keys"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -91,7 +92,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( -246, 46 )
+position = Vector2( -246, 57.4596 )
 life_time = 5
 
 [node name="Goal" parent="." instance=ExtResource( 5 )]
