@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Player/flame.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://World/lights/pixel-light-80.png" type="Texture" id=3]
-[ext_resource path="res://World/lights/pixel-light.png" type="Texture" id=4]
+[ext_resource path="res://World/lights/light-dying-ember-player-health.png" type="Texture" id=3]
+[ext_resource path="res://World/lights/pixel-light-80.png" type="Texture" id=4]
 [ext_resource path="res://Player/DeathScreen.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve" id=1]
@@ -57,9 +57,9 @@ MAX_MOVE_SPEED_MULTIPLIER = 4
 FRICTION = 0.8
 
 [node name="HealthVisual" type="Sprite" parent="."]
-modulate = Color( 1, 1, 0, 0.0235294 )
+modulate = Color( 1, 0.537255, 0.12549, 0.145098 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="Sun" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -79,6 +79,7 @@ draw_order = 1
 process_material = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -97,7 +98,7 @@ __meta__ = {
 }
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 texture_scale = 2.0
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 0.929412 )
