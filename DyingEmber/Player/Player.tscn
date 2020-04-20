@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/flame.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://World/lights/pixel-light-80.png" type="Texture" id=3]
+[ext_resource path="res://World/lights/pixel-light.png" type="Texture" id=4]
+[ext_resource path="res://Player/DeathScreen.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve" id=1]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 265.091 ), 0.0, 0.0, 0, 0, Vector2( 0.976654, -62.1818 ), 7529.78, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.819608, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.72
+trail_divisor = 5
+trail_color_modifier = SubResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_align_y = true
+flag_rotate_y = true
+flag_disable_z = true
+gravity = Vector3( 0, -35, 0 )
+angular_velocity = 3.66
+angular_velocity_random = 0.48
+angular_velocity_curve = SubResource( 2 )
+orbit_velocity = 0.11
+orbit_velocity_random = 0.11
+linear_accel = 4.0
+linear_accel_random = 0.18
+radial_accel = 1.0
+radial_accel_random = 1.0
+tangential_accel = 0.79
+tangential_accel_random = 0.42
+color = Color( 1, 0.262745, 0.121569, 1 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6, 7 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 2 )
+MAX_MOVE_SPEED_MULTIPLIER = 4
+FRICTION = 0.8
+
+[node name="HealthVisual" type="Sprite" parent="."]
+modulate = Color( 1, 1, 0, 0.0235294 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="Sun" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FlamesParticles" type="Particles2D" parent="."]
+use_parent_material = true
+amount = 128
+lifetime = 1.2
+speed_scale = 2.56
+randomness = 0.41
+fixed_fps = 60
+visibility_rect = Rect2( -30, -55, 60, 80 )
+draw_order = 1
+process_material = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_as_relative = false
+current = true
+drag_margin_h_enabled = true
+smoothing_enabled = true
+smoothing_speed = 20.0
+drag_margin_left = 0.09
+drag_margin_top = 0.09
+drag_margin_right = 0.09
+drag_margin_bottom = 0.09
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 2.0
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0.929412 )
+
+[node name="FuelTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "The amount of fuel the player has left before he burns out"
+}
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="DeathScreen" parent="." instance=ExtResource( 5 )]
+[connection signal="timeout" from="FuelTimer" to="." method="_on_FuelTimer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
